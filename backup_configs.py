@@ -5,14 +5,15 @@ import os
 from email.mime.text import MIMEText
 import yaml
 # Devices and their associated commands
-with open("inventory.yml") as f:
+base_dir = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(base_dir, "inventory.yml")) as f:
     data = yaml.safe_load(f)
     devices = data["devices"]
 
 success = []
 failures = []
 
-now = datetime.now().strftime("%Y%m%d-%H%M%S")
+now = datetime.now().strftime("%Y-%m-%d_%I-%M%p")
 #backup_dir = os.path.expanduser("~/router_backups")
 #os.makedirs(backup_dir, exist_ok=True)
 today_str = datetime.now().strftime("%m-%d-%Y")
