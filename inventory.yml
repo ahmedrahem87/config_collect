@@ -1,0 +1,25 @@
+devices:
+  - device:
+      device_type: cisco_ios
+      host: 192.168.127.11
+      username: adam
+      password: adamsand
+    cmd: show run
+    hostname: router1
+
+  - device:
+      device_type: cisco_ios
+      host: 192.168.127.12
+      username: adam
+      password: adamsand
+    cmd: show run
+    hostname: router2
+
+  - device:
+      device_type: nokia_sros
+      host: 192.168.127.13
+      username: admin
+      password: admin
+    cmd: admin display-config
+    hostname: router3
+
