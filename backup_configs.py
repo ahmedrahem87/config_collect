@@ -13,8 +13,12 @@ success = []
 failures = []
 
 now = datetime.now().strftime("%Y%m%d-%H%M%S")
-backup_dir = os.path.expanduser("~/router_backups")
-os.makedirs(backup_dir, exist_ok=True)
+#backup_dir = os.path.expanduser("~/router_backups")
+#os.makedirs(backup_dir, exist_ok=True)
+today_str = datetime.now().strftime("%m-%d-%Y")
+base_backup_dir = os.path.expanduser("~/router_backups")
+daily_dir = os.path.join(base_backup_dir, today_str)
+os.makedirs(daily_dir, exist_ok=True)
 
 for entry in devices:
     device = entry['device']
@@ -23,7 +27,8 @@ for entry in devices:
     try:
         conn = ConnectHandler(**device)
         config = conn.send_command(cmd)
-        filename = f"{backup_dir}/{hostname}_config_{now}.txt"
+        #filename = f"{backup_dir}/{hostname}_config_{now}.txt"
+        filename = os.path.join(daily_dir, f"{hostname}_config_{now}.txt")
         with open(filename, 'w') as f:
             f.write(config)
         conn.disconnect()
